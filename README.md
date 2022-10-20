@@ -14,5 +14,5 @@
 - How Secure Is My Password? [here](https://www.security.org/how-secure-is-my-password/)
 - kubeapps for helm chart [here](https://hub.kubeapps.com)
 - Bitnami helm charts [here](https://github.com/bitnami/charts)
-- Stable helm charts [here]https://github.com/helm/charts/tree/master/stabl)
+- Stable helm charts [here](https://github.com/helm/charts/tree/master/stabl)
 
