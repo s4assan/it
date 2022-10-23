@@ -13,7 +13,10 @@ resource "aws_s3_bucket" "bucket" {
   object_lock_configuration {
     object_lock_enabled = "Enabled"
   }
-  tags = var.common_tags
+  tags = merge(var.common_tags, {
+    Name = format("%s-%s-%s-terraform-state", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
+    },
+  )
 }
 
 resource "aws_dynamodb_table" "terraform-lock" {
@@ -25,10 +28,9 @@ resource "aws_dynamodb_table" "terraform-lock" {
     name = "LockID"
     type = "S"
   }
-  tags = var.common_tags
+
+  tags = merge(var.common_tags, {
+    Name = format("%s-%s-%s-terraform-state-lock", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
+    },
+  )
 }
-
-
-
-
-
