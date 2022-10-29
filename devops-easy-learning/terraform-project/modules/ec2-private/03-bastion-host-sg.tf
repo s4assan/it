@@ -21,6 +21,15 @@ resource "aws_security_group_rule" "webserver_allow_all_ssh" {
   security_group_id = aws_security_group.ssh_http_sg.id
 }
 
+resource "aws_security_group_rule" "webserver_allow_all_http" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ssh_http_sg.id
+}
+
 resource "aws_security_group_rule" "webserver_allow_all_ping" {
   type              = "ingress"
   from_port         = 8
