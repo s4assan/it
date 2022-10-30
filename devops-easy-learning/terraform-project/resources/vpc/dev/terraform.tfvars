@@ -21,4 +21,4 @@ enable_classiclink               = false
 enable_classiclink_dns_support   = false
 assign_generated_ipv6_cidr_block = false
 
-cluster_name = "demo-cluster"
+cluster_name = "demo-cluster-student"
