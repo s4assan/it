@@ -38,9 +38,9 @@ resource "aws_db_subnet_group" "alpha-postgres-db-subnet" {
 resource "aws_route53_record" "cluster-alias" {
   depends_on = [aws_db_instance.alpha-db]
   zone_id    = "Z09063052B43KCQ7FSGHY"
-  name       = "alpha-rds"
+  name       = "alpha"
   type       = "CNAME"
-  ttl        = "60"
+  ttl        = "30"
 
   records = [split(":", aws_db_instance.alpha-db.endpoint)[0]]
   # https://github.com/hashicorp/terraform/issues/4996
@@ -70,12 +70,6 @@ resource "aws_security_group_rule" "outbound_rule" {
   type              = "egress"
   cidr_blocks       = ["0.0.0.0/0"]
 }
-
-
-
-
-
-
 
 
 
