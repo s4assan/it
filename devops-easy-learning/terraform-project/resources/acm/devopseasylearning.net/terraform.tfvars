@@ -8,4 +8,3 @@ common_tags = {
   "ControlledBy"  = "Terraform"
   "cloudProvider" = "aws"
 }
-
