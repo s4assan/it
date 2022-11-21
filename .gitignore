@@ -29,6 +29,6 @@ test
 *.tfstate
 *.tfstate.*
 
-it/pipeline
+pipeline
 
 
