@@ -1,0 +1,16 @@
+node {
+    stage ('Testing') {
+        echo 'Building..'
+        sh 'docker images'
+    }
+}
+
+// --------------------------------------------------------------------------
+
+node ('master') {
+    stage ('Testing') {
+        echo 'Building..'
+        sh 'docker images'
+    }
+}
+

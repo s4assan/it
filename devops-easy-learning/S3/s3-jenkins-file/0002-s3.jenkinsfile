@@ -1,0 +1,42 @@
+
+pipeline {
+    agent any
+    stages { 
+        stage('checkout') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('clean') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('package') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('docker build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('push image') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('deploy') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+

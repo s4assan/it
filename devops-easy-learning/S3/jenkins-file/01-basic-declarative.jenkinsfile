@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Testing') {
+            steps {
+                script {
+                    echo 'Building..'
+                    sh 'docker images'
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    stages {
+        stage('Testing') {
+            steps {
+                script {
+                    echo 'Building..'
+                    sh 'docker images'
+                }
+            }
+        }
+    }
+}
+

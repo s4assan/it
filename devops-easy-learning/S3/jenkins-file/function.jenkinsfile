@@ -1,0 +1,49 @@
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    parameters {
+         choice (name: 'env', choices: 'dev\nqa\nprod\nstg', description: 'Env where to deploy')
+     }
+    stages {
+        stage ('deploy') {
+            steps {
+                script {
+                   deploy()
+                }
+            }
+        }
+        stage('Testing') {
+            steps {
+                script {
+                    echo 'Building..'
+                    sh 'docker images'
+                }
+            }
+        }
+    }
+}
+
+
+def deploy () {
+    if (params.env == 'dev') {
+        sh """
+        echo "Deploying Dev environment"
+        """
+    }
+    if (params.env == 'qa') {
+        sh """
+        echo "Deploying qa environment"
+        """
+    }
+    if (params.env == 'stg') {
+        sh """
+        echo "Deploying stg environment"
+        """
+    }
+    if (params.env == 'prod') {
+        sh """
+        echo "Deploying prod environment"
+        """
+    }
+}

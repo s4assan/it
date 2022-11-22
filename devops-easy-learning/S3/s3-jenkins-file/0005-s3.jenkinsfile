@@ -1,0 +1,80 @@
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                script {
+                    sh 'cat /etc/*release'
+                }
+            }
+        }
+        stage('clean') {
+            steps {
+                script {
+                    sh 'date'
+                    sh 'uname'
+                    sh 'ls -l'
+                }
+            }
+        }
+        stage('build') {
+            steps {
+                script {
+                    sh """ 
+                    date
+                    uname
+                    ls -l
+                    """
+                }
+            }
+        }
+        stage('package') {
+            steps {
+                script {
+                    sh """ 
+                    docker images
+                    docker ps
+                    """
+                }
+            }
+        }
+        stage('docker build') {
+            steps {
+                script {
+                    sh """ 
+                    pwd
+                    """
+                }
+            }
+        }
+        stage('push image') {
+            steps {
+                script {
+                    sh """ 
+                    ls
+                    """
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                script {
+                    sh """ 
+                    echo 'Deploying to prod'
+                    """
+                }
+            }
+        }
+    }
+    post {
+      success {
+        echo 'Finish with success -------------------------------------------'
+      }
+      failure {
+        echo 'Finish with failure -------------------------------------------'
+      }
+      always {
+        echo 'This will always run -------------------------------------------'
+      }      
+    }
+}

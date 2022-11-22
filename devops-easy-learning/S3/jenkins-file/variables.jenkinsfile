@@ -1,0 +1,49 @@
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    environment {
+        HELM_VERSION = 'helm3'
+        TERRAFROM_VERSION = '1.2.6'
+        HELM_CHART_REPOS = 'https://github.com/helm/charts/tree/master/stable'
+
+     }
+    stages {
+        stage('Testing') {
+            steps {
+                script {
+                    sh """
+                        echo 'helm version: ${HELM_VERSION}'
+                        echo 'terraform version: ${TERRAFROM_VERSION}'
+                        echo 'repos: ${HELM_CHART_REPOS }'
+                    """
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+
+def HELM_VERSION = 'helm3'
+def TERRAFROM_VERSION = '1.2.6'
+def HELM_CHART_REPOS = 'https://github.com/helm/charts/tree/master/stable'
+
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    stages {
+        stage('Testing') {
+            steps {
+                script {
+                    sh """
+                        echo 'helm version: ${HELM_VERSION}'
+                        echo 'terraform version: ${TERRAFROM_VERSION}'
+                        echo 'repos: ${HELM_CHART_REPOS }'
+                    """
+                }
+            }
+        }
+    }
+}

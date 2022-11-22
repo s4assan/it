@@ -1,0 +1,22 @@
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '7'))
+        disableConcurrentBuilds()
+        timeout (time: 10, unit: 'MINUTES')
+        timestamps()
+    }
+    stages {
+        stage('Testing') {
+            steps {
+                script {
+                    echo 'Building..'
+                    sh 'docker images'
+                }
+            }
+        }
+    }
+}
+
