@@ -1,0 +1,122 @@
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    parameters {
+        string (name: 'cluster', defaultValue: 'alpha-eks', description: 'This is the alpha-eks cluster name')
+        string (name: 'region', defaultValue: 'us-east-1', description: 'This is the alpha-eks cluster name')
+        booleanParam (name: 'createKubeconfig', defaultValue: 'true', description: 'Create kube config')
+        choice (name: 'env', choices: '\ndev\nqa\nstg\nprod', description: 'environments')
+        booleanParam (name: 'normalChart', defaultValue: 'false', description: 'If true, the chart will be install as normal chart with secret')
+    }
+    stages {
+        stage('checkout') {
+            steps {
+                script {
+                    sh 'cat /etc/*release'
+                }
+            }
+        }
+        stage('printing parameters') {
+            steps {
+                script {
+                    parameters()
+                }
+            }
+        }
+        stage('condition-01') {
+            steps {
+                script {
+                 deploy()
+                }
+            }
+        }
+        stage('function') {
+            steps {
+                script {
+                    sh """ 
+                    pwd
+                    """
+                }
+            }
+        }
+        stage('push image') {
+            steps {
+                script {
+                    sh """ 
+                    ls
+                    """
+                }
+            }
+        }
+        // stage('deploy') {
+        //     steps {
+        //         script {
+        //             sh """ 
+        //             echo 'Deploying to prod'
+        //             """
+        //         }
+        //     }
+        // }
+    }
+    post {
+      success {
+        echo 'Finish with success -------------------------------------------'
+      }
+      failure {
+        echo 'Finish with failure -------------------------------------------'
+      }
+      always {
+        echo 'This will always run -------------------------------------------'
+      }      
+    }
+}
+
+
+def deploy () {
+    sh 'echo TESTINGH======================================================'
+    if (params.env == 'dev') {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == 'qa') {
+        sh """
+        echo 'This is a ${params.env} environment '
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == 'stg') {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == 'prod') {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }else{
+        """
+        echo 'HUMMMMMMMMMMMMMMMMMMMM ${params.env} environment =========================='
+       """
+    }
+}
+
+def parameters () {
+    sh """
+    echo 'chartVersion is: ${params.chartVersion}'
+    echo 'nameSpace is: ${params.nameSpace}'
+    echo 'branchName is: ${params.branchName}'
+    echo 'deploySource is: ${params.deploySource}'
+    echo 'secretPath is: ${params.secretPath}'
+    echo 'The cluster name is: ${params.cluster}'
+    echo 'The cluster region is: ${params.region}'
+    echo 'The environment is: ${params.env}'
+    echo 'region is: ${params.region}'
+    echo 'group is: ${params.group}'
+    echo 'directory is: ${params.directory}'
+    """
+}
