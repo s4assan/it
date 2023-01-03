@@ -1,63 +1,143 @@
-s3nelly
-s3yannick
-s3don
-s3mbouna
-s3andre
-s3jean
-s3alex
-s3blaise
-s3yvan
-s3kathy
-s3mokh
-s3gene
-s3benjamine
-s3leslie
-s3gisele
-s3patrick1
-s3flavie
-s3paulinus
-s3nivelle
-s3nivelle
-s3carol
-s3coubis
-s3fotso 
-s3juan
-s3abou
-s3kouame
-s3aline
-s3ida
-s3daouda
-s3mullette
-s3carolle 
-s3pierroz
-s3adnan 
-s3mashoud
-s3sekou
-move from s2
-s3boni
-s3ramath
-s3anneguillaine
-s3christian
-s3bertrand
-s3nestor
-s3victor
-s3samuel
-s3auguste
-s3linda
-s3blandine
-s3chrystel
-michelle
-s3s3gwladys
-s3irene
-s3pascaline
-s3tiemeni
-s3vanessa
-s3kareen
-s3rene
-s3stana
-s3christele
-kemgou
-s3nyerepa
-s3carine
-s3ulrich
-s3ornella
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "S3PublicActions",
+            "Effect": "Deny",
+            "Action": [
+                "s3:PutBucketPublicAccessBlock",
+                "s3:PutAccountPublicAccessBlock"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Sid": "AllowUsersToListUsersInConsole",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListUsers"
+            ],
+            "Resource": [
+                "arn:aws:iam::427509263767:user/*"
+            ]
+        },
+        {
+            "Sid": "SecretsRO",
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:ListSecrets"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowReadonly",
+            "Effect": "Allow",
+            "Action": [
+                "appstream:Get*",
+                "autoscaling:Describe*",
+                "aws-portal:ViewAccount",
+                "aws-portal:ViewBilling",
+                "aws-portal:ViewPaymentMethods",
+                "aws-portal:ViewUsage",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:DescribeStackResources",
+                "cloudformation:DescribeStacks",
+                "cloudformation:GetTemplate",
+                "cloudformation:List*",
+                "cloudfront:Get*",
+                "cloudfront:List*",
+                "cloudtrail:DescribeTrails",
+                "cloudtrail:GetTrailStatus",
+                "cloudwatch:Describe*",
+                "cloudwatch:Describe*",
+                "cloudwatch:DescribeAlarmHistory",
+                "cloudwatch:DescribeAlarms",
+                "cloudwatch:DescribeAlarmsForMetric",
+                "cloudwatch:Get*",
+                "cloudwatch:Get*",
+                "cloudwatch:GetMetricStatistics",
+                "cloudwatch:List*",
+                "cloudwatch:List*",
+                "cloudwatch:ListMetrics",
+                "directconnect:Describe*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:DescribeTable",
+                "dynamodb:GetItem",
+                "dynamodb:ListTables",
+                "dynamodb:Query",
+                "dynamodb:Scan",
+                "ec2:Describe*",
+                "ecr:Describe*",
+                "ecr:List*",
+                "ecs:Describe*",
+                "ecs:List*",
+                "elasticache:Describe*",
+                "elasticbeanstalk:Check*",
+                "elasticbeanstalk:Describe*",
+                "elasticbeanstalk:List*",
+                "elasticbeanstalk:RequestEnvironmentInfo",
+                "elasticbeanstalk:RetrieveEnvironmentInfo",
+                "elasticloadbalancing:Describe*",
+                "elastictranscoder:List*",
+                "elastictranscoder:Read*",
+                "es:Describe*",
+                "es:List*",
+                "iam:Get*",
+                "iam:GetAccount*",
+                "iam:List*",
+                "iam:ListAccount*",
+                "kinesis:Describe*",
+                "kinesis:List*",
+                "logs:FilterLogEvents",
+                "opsworks:Describe*",
+                "opsworks:Get*",
+                "rds:Describe*",
+                "rds:Describe*",
+                "rds:Download*",
+                "rds:ListTagsForResource",
+                "rds:ListTagsForResource",
+                "redshift:Describe*",
+                "redshift:ViewQueriesInConsole",
+                "route53:Get*",
+                "route53:List*",
+                "s3:Get*",
+                "s3:List*",
+                "sdb:GetAttributes",
+                "sdb:List*",
+                "sdb:Select*",
+                "ses:Get*",
+                "ses:List*",
+                "snowball:Describe*",
+                "snowball:GetJobManifest",
+                "snowball:GetSnowballUsage",
+                "snowball:List*",
+                "sns:Get*",
+                "sns:List*",
+                "sqs:GetQueueAttributes",
+                "sqs:ListQueues",
+                "sqs:ReceiveMessage",
+                "states:DescribeActivity",
+                "states:DescribeExecution",
+                "states:DescribeStateMachine",
+                "states:GetExecutionHistory",
+                "states:ListActivities",
+                "states:ListExecutions",
+                "states:ListStateMachines",
+                "storagegateway:Describe*",
+                "storagegateway:List*",
+                "support:*",
+                "tag:getResources",
+                "tag:getTagKeys",
+                "tag:getTagValues",
+                "waf-regional:Get*",
+                "waf-regional:List*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
+
