@@ -159,8 +159,11 @@ num()
 
 ### Example 2
 ```py
+import sys
+
+
 def num():
-    num=eval(input("Enter a number between 1-10: "))
+    num = eval(input("Enter a number between 1-10: "))
     if num == 1:
         print("One")
     elif num == 2:
@@ -181,8 +184,10 @@ def num():
         print("Nine")
     elif num == 10:
         print("Ten")
-    elif num not in [1,2,3,4,5,6,7,8,9,10]:
+    elif num not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
         print("Your number is out of range. Please select between 1-10")
+
+
 num()
 ```
 

@@ -208,7 +208,6 @@ string2=" "
 print(bool(string1))
 print(bool(string2))
 print(string1.startswith('p'))
-print(string1.startswith('P'))
 print(string1.startswith('Python'))
 print(string1.endswith('n'))
 print(string1.endswith('automation'))

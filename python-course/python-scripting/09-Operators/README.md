@@ -167,19 +167,36 @@ They are two types of Identity operators:
 ### Identity operators example in python
 ```py
 #!/usr/local/bin/python3
-a=30.2
-b=4
-c="hello"
-d="5.3.4.30"
-e="good"
-z=[3, 10, -1, 1, 'hello']
+a = 30.2
+b = 4
+c = "hello"
+d = "5.3.4.30"
+e = "good"
+z = [3, 10, -1, 1, 'hello']
+zz = (3, 10, -1, 1, 'hello')
+zp = {'name': 'Jhon', 'age': 25, 'courses': [
+    'Math', 'CompSci'], 'phone': '832 897 8633'}
 
-print(a,type(a))
-print(b,type(b))
-print(c,type(c))
-print(d,type(d))
-print(e,type(e))
-print(z,type(e))
+print(a, type(a))
+print(b, type(b))
+print(c, type(c))
+print(d, type(d))
+print(e, type(e))
+print(z, type(z))
+print(z, type(zz))
+print(zp, type(zp))
+
+#Output
+30.2 <class 'float'>
+4 <class 'int'>
+hello <class 'str'>
+5.3.4.30 <class 'str'>
+good <class 'str'>
+[3, 10, -1, 1, 'hello'] <class 'list'>
+[3, 10, -1, 1, 'hello'] <class 'tuple'>
+{'name': 'Jhon', 'age': 25, 'courses': ['Math', 'CompSci'], 'phone': '832 897 8633'} <class 'dict'>
+
+
 
 print(" ")
 

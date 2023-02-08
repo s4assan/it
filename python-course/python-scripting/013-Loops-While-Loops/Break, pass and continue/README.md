@@ -18,10 +18,10 @@ Loops are used to execute certain block of statements for n number of times unti
 - We use pass statement to write empty loops. Pass is also used for empty control statement, function and classes.
 
 ```py
-for each in [3,4,56,7,8]:
-	print(each)
-	if each==56:
-		break
+for each in [3, 4, 56, 7, 8]:
+    print(each)
+    if each == 56:
+        break
 
 #OUTPUT
 3
@@ -165,4 +165,13 @@ print("Outside for loop")
 
 #OUTPUT
 Outside for loop
+```
+
+```py
+a = 7
+
+if a > 10:
+    pass
+else:
+    print("hi")
 ```

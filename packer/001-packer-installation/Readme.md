@@ -1,3 +1,7 @@
+## packer releases
+https://releases.hashicorp.com/packer/
+
+
 ## Download links
 https://developer.hashicorp.com/packer/downloads
 

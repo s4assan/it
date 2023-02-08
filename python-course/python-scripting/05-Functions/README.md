@@ -22,6 +22,24 @@ if platform.system()=="Windows":
 else:
 	mycode('clear','ls -lrt')
 
+
+#! /usr/bin/python3
+import os
+import time
+import platform
+def mycode(cmd1,cmd2):
+	print("Please wait. Cleaning the screen....")
+	time.sleep(2)
+	os.system(cmd1)
+	print("Please wait finding the list of dir and files")
+	time.sleep(2)
+	os.system(cmd2)
+if platform.system()=="Windows":
+	mycode("cls","dir")
+elif platform.system()=="Linux":
+	mycode('clear','ls -lrt')
+else:
+	print("Hummmmmm")
 ```
 
 ### How to define a Function and How to usedefined Funtion , Types of Functions
@@ -82,17 +100,23 @@ print("Function are very easy in python")
 print("Now we are writing simple functions")
 
 def welcome_msg():
-	print("Welcome to Python Scripting")
-	print("Python is easy to learn")
-	return None
+    print("Welcome to Python Scripting")
+    print("Python is easy to learn")
+    return None
+
+
 def known_concepts():
-	print("Now we are good with bascis")
-	print("We are about to start functions concepts in python")
-	return None
+    print("Now we are good with bascis")
+    print("We are about to start functions concepts in python")
+    return None
+
+
 def learning_concepts():
-	print("Function are very easy in python")
-	print("Now we are writing simple functions")
-	return None
+    print("Function are very easy in python")
+    print("Now we are writing simple functions")
+    return None
+
+
 welcome_msg()
 known_concepts()
 learning_concepts()
@@ -117,6 +141,8 @@ def main():
 	return None
     
 main()
+myfunction1()
+myfunction2()
 ```
 
 

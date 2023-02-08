@@ -7,7 +7,6 @@ else:
     print("I'm sorry, our holidays are only for cool people")
 
 
-
 name = str(input("Please enter your name: "))
 age = int(input("Please enter your age: "))
 

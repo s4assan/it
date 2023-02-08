@@ -16,7 +16,7 @@
 - Platform Independent (the same code can run on every OS like windows, Linux and MacOS).
 - Supports both functional and oops concepts.
 
-### What is Python ?
+### What is Python?
 Python is a powerful multi-purpose programming language (we can use it almost in any area of IT) created by Guido van Rossum
 
 ### Python Versions
@@ -90,6 +90,7 @@ which python3
 - set the path `C:\Users\Owner\AppData\Local\Programs\Python\Python37-32\`
 ```
 python <script name>.py
+python <script path>
 python hello.py
 ```
 
@@ -97,6 +98,7 @@ python hello.py
 ```
 #For a specific version of python on Linux
 python3 <script name>
+python3 <script path>
 python3 hello.py
 
 # This will run with pyhon 2 by default on Linux
@@ -405,7 +407,6 @@ print("/home/tia/scrip")
 /home/tia/scrip
 ```
 
-
 ### Installing Linux packages via Python
 ```py
 import subprocess
@@ -421,7 +422,52 @@ package_name = "httpd"
 subprocess.run(["sudo", "yum", "remove", "-y", package_name], check=True)
 ```
 
+## Call a script in python
+```py
+#!/usr/bin/python3
+import subprocess
+subprocess.call(['sh', './script.sh'])
 
+vim a.py
+chmod +x a.py
+python3 a.py
+```
+
+```py
+import os
+import sys
+os.system("chmod +x script.sh")
+os.system("bash /home/s5tia/script.sh")
+
+vim a.py
+python3 a.py
+```
+
+```py
+#!/usr/bin/python3
+import subprocess
+print(subprocess.run(["./script.sh","arguments"], shell=True))
+```
+
+## Call a script in python with arguments
+```sh
+#!/bin/bash
+podname=$1
+serial=$2
+echo "podname=$podname  serial=$serial"
+
+apt install tree -y
+apt install tree -y unzip
+```
+
+```py
+#!/usr/bin/python3
+import subprocess
+output = subprocess.call(['bash', '/home/s5tia/script.sh', "alpha",  "12541"])
+print(output)
+```
+
+## Variables
 ```py
 x=3
 y=5.7
@@ -671,3 +717,4 @@ programming tutorials"""
 # printing
 print(mystring2)
 ```
+
