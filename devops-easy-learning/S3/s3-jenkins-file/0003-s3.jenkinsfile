@@ -1,0 +1,143 @@
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                script {
+                    sh 'cat /etc/*release'
+                }
+            }
+        }
+        stage('clean') {
+            steps {
+                script {
+                    sh 'date'
+                    sh 'uname'
+                    sh 'ls -l'
+                }
+            }
+        }
+        stage('build') {
+            steps {
+                script {
+                    sh """ 
+                    date
+                    uname
+                    ls -l
+                    """
+                }
+            }
+        }
+        stage('package') {
+            steps {
+                script {
+                    sh """ 
+                    docker images
+                    docker ps
+                    """
+                }
+            }
+        }
+        stage('docker build') {
+            steps {
+                script {
+                    sh """ 
+                    pwd
+                    """
+                }
+            }
+        }
+        stage('push image') {
+            steps {
+                script {
+                    sh """ 
+                    ls
+                    """
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                script {
+                    sh """ 
+                    echo 'Deploying to prod'
+                    """
+                }
+            }
+        }
+    }
+}
+
+
+pipeline {
+    agent any 
+
+    stages {
+        stage('1') {
+            steps {
+                script {
+                   sh """
+                    ls
+                    """
+                }
+            }
+        }
+        stage('2') {
+            steps {
+                script {
+                   sh """
+                    ls
+                    """
+                }
+            }
+        }
+        stage('3') {
+            steps {
+                script {
+                   sh """
+                    ls
+                    """
+                }
+            }
+        }
+        stage('4') {
+            steps {
+                script {
+                   sh """
+                    ls
+                    """
+                }
+            }
+        }
+        stage('5') {
+            steps {
+                script {
+                   sh """
+                    ls
+                    """
+                }
+            }
+        }
+        stage('6') {
+            steps {
+                script {
+                   sh """
+                    ls
+                    """
+                }
+            }
+        }
+        stage('7') {
+            steps {
+                script {
+                   sh """
+                    ls
+                    """
+                }
+            }
+        }
+    }
+}
+
+
+

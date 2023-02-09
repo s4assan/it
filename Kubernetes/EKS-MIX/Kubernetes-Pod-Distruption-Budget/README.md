@@ -113,6 +113,38 @@ kubectl drain [node name] \
 ```
 
 
+```yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: pdbdemo
+spec:
+  minAvailable: 2 # 2 pods should alow be available
+  selector:
+    matchLabels:
+      run: nginx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: nginx
+  name: nginx-deploy
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      run: nginx
+  template:
+    metadata:
+      labels:
+        run: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+
+```
 ## kubectl get all
 ```
 NAME                                READY   STATUS    RESTARTS   AGE

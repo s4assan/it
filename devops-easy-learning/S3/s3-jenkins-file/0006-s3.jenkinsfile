@@ -1,0 +1,124 @@
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    parameters {
+        string (name: 'cluster', defaultValue: 'alpha-eks', description: 'This is the alpha-eks cluster name')
+        string (name: 'region', defaultValue: 'us-east-1', description: 'This is the alpha-eks cluster name')
+        booleanParam (name: 'createKubeconfig', defaultValue: 'true', description: 'Create kube config')
+        choice (name: 'env', choices: 'dev\nqa\nstg\nprod', description: 'environments')
+
+        string (name: 'name', defaultValue: 'tia', description: 'name')
+        string (name: 'group', defaultValue: 'admin', description: 'group')
+        choice (name: 'directory', choices: 'dev\nqa\nstg\nprod', description: 'directory')
+
+        string (name: 'clusterName', defaultValue: 'eks', description: 'Name of the cluster you are deploying to dry run the chart before deploying')
+        string (name: 'region', defaultValue: 'us-east-1', description: 'AWS region to execute commands in')
+        string (name: 'chartName', defaultValue:'', description: 'The name of the chart that you want to dry run')
+        string (name: 'chartVersion', defaultValue:'', description:  'The Version of the chart that you want to dry run')
+        string (name: 'nameSpace', defaultValue:'', description: 'The namespace where to deploy the chart')
+        string (name: 'branchName', defaultValue: 'pipeline-test', description: 'The branch name of the chart that you want to deploy or dry run')
+        string (name: 'secretPath', defaultValue: '/ektech/datadog_api_key', description: 'The path where the secret is stored in AWS system manager')
+        string (name: 'helmSet', defaultValue: 'datadog.apiKey', description: 'The helm chart value that you want to overwrite')
+        choice (name: 'deploySource', choices: 'local\nremote', description: 'The helm chart source')
+        choice (name: 'deployMode', choices: 'dryRun\ninstall\nupgrade', description: 'Deployment mode')
+        booleanParam (name: 'normalChart', defaultValue: 'false', description: 'If true, the chart will be install as normal chart with secret')
+        booleanParam (name: 'deployWithSecret', defaultValue: 'false', description: 'default is false if you dont want get the secret from AWS system manager, if set to true, it will get the secret from AWS system manager')
+        booleanParam (name: 'createServiceNowTicket', defaultValue: 'false', description: 'default is false if you dont want service ticket, if set to true, it will create a ticket')
+    }
+    stages {
+        stage('checkout') {
+            steps {
+                script {
+                    sh 'cat /etc/*release'
+                }
+            }
+        }
+        stage('printing parameters') {
+            steps {
+                script {
+                    sh """
+                    echo 'chartVersion is: ${params.chartVersion}'
+                    echo 'nameSpace is: ${params.nameSpace}'
+                    echo 'branchName is: ${params.branchName}'
+                    echo 'deploySource is: ${params.deploySource}'
+                    echo 'secretPath is: ${params.secretPath}'
+                    echo 'The cluster name is: ${params.cluster}'
+                    echo 'The cluster region is: ${params.region}'
+                    echo 'The environment is: ${params.env}'
+                    echo 'region is: ${params.region}'
+                    echo 'group is: ${params.group}'
+                    echo 'directory is: ${params.directory}'
+                    """
+                }
+            }
+        }
+        // stage('users parameters') {
+        //     steps {
+        //         script {
+        //             sh """ 
+        //             sudo groupadd ${params.group} || tree
+        //             sudo useradd ${params.name} || tree
+        //             sudo usermod -aG ${params.group} ${params.name} || tree
+                    
+        //             cd /tmp 
+        //             sudo mkdir ${params.directory} || tree
+
+        //             cat /etc/passwd |grep ${params.name}
+        //             cat /etc/group |grep ${params.group}
+
+        //             ls -l /tmp
+        //             """
+        //         }
+        //     }
+        // }
+        stage('package') {
+            steps {
+                script {
+                    sh """ 
+                    docker images
+                    docker ps
+                    """
+                }
+            }
+        }
+        stage('docker build') {
+            steps {
+                script {
+                    sh """ 
+                    pwd
+                    """
+                }
+            }
+        }
+        stage('push image') {
+            steps {
+                script {
+                    sh """ 
+                    ls
+                    """
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                script {
+                    sh """ 
+                    echo 'Deploying to prod'
+                    """
+                }
+            }
+        }
+    }
+    post {
+      success {
+        echo 'Finish with success -------------------------------------------'
+      }
+      failure {
+        echo 'Finish with failure -------------------------------------------'
+      }
+      always {
+        echo 'This will always run -------------------------------------------'
+      }      
+    }
+}

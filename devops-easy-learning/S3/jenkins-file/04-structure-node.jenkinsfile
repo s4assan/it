@@ -1,0 +1,26 @@
+node ('master') {
+    stage('Checkout') {
+        echo "Cloning the source code........"
+    }
+    stage('Compile') {
+        echo "Compiling the application........"
+    }
+    stage('Test')  {
+        echo "Testing the application........" 
+    }
+    stage('Build')  {
+        echo "Building the application........" 
+    }
+    stage('Package')  {
+        echo "Packaging the application........" 
+    }
+    stage('Docker-build')  {
+        echo "Biulding docker image........" 
+    }
+    stage('Docker-push')  {
+        echo "Pushing docker image into AWS ECR or docker hub........" 
+    }
+    stage('Deploy')  {
+        echo "Deploying the application into Kubernetes........" 
+    }
+}

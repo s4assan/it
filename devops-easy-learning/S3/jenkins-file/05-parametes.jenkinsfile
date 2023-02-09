@@ -1,0 +1,43 @@
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    parameters {
+         string (name: 'clusterName', defaultValue: 'eks', description: 'Name of the cluster you are deploying to dry run the chart before deploying')
+         string (name: 'region', defaultValue: 'us-east-1', description: 'AWS region to execute commands in')
+         string (name: 'chartName', description: 'The name of the chart that you want to dry run')
+         string (name: 'chartVersion', description: 'The Version of the chart that you want to dry run')
+         string (name: 'nameSpace', description: 'The namespace where to deploy the chart')
+         string (name: 'branchName', defaultValue: 'pipeline-test', description: 'The branch name of the chart that you want to deploy or dry run')
+         string (name: 'secretPath', defaultValue: '/ektech/datadog_api_key', description: 'The path where the secret is stored in AWS system manager')
+         string (name: 'helmSet', defaultValue: 'datadog.apiKey', description: 'The helm chart value that you want to overwrite')
+         choice (name: 'deploySource', choices: 'local\nremote', description: 'The helm chart source')
+         choice (name: 'deployMode', choices: 'dryRun\ninstall\nupgrade', description: 'Deployment mode')
+         booleanParam (name: 'normalChart', defaultValue: 'false', description: 'If true, the chart will be install as normal chart with secret')
+         booleanParam (name: 'deployWithSecret', defaultValue: 'false', description: 'default is false if you dont want get the secret from AWS system manager, if set to true, it will get the secret from AWS system manager')
+         booleanParam (name: 'createServiceNowTicket', defaultValue: 'false', description: 'default is false if you dont want service ticket, if set to true, it will create a ticket')
+     }
+    stages {
+        stage('Testing') {
+            steps {
+                script {
+                    sh """
+                        echo "clusterName: ${params.clusterName}"
+                        echo "region: ${params.region}"
+                        echo "chartName: ${params.chartName}"
+                        echo "chartVersion: ${params.chartVersion}"
+                        echo "nameSpace: ${params.nameSpace}"
+                        echo "branchName: ${params.branchName}"
+                        echo "secretPath: ${params.secretPath}"
+                        echo "helmSet: ${params.helmSet}"
+                        echo "deploySource: ${params.deploySource}"
+                        echo "deployMode: ${params.deployMode}"
+                        echo "normalChart: ${params.normalChart}"
+                        echo "deployWithSecret: ${params.deployWithSecret}"
+                        echo "createServiceTicket: ${params.createServiceTicket}"
+                    """
+                }
+            }
+        }
+    }
+}

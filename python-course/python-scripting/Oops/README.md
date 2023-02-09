@@ -1,9 +1,82 @@
 # Class in Programing or OOP (object oriented programing)
+- It use to group related function
+- Template is like module in terraform
+
 They are bluepring `(templates)` that we can user to reprente anything in the real world (it should always stsart with `capital later`). It have 2 entites
 - The Properties: the properties of a person can be (email, name, age, job title etc.)
 - The behaviors: it is what the person can do (he can work, play, talk, run etc.)
 
 ## EXAMPLE 
+
+```py
+class emp:
+
+    def get_name_age_salary(self, name, age, salary):
+        self.name = name
+        self.age = age
+        self.salary = salary
+        return None
+
+    def display_details(self):
+        print(
+            f'The name is: {self.name}\nThe age is: {self.age}\nThe salary is: {self.salary}')
+        return None
+
+
+emp1 = emp()
+emp2 = emp()
+
+emp1.get_name_age_salary('John', 34, 45000)
+emp2.get_name_age_salary('Cliton', 25, 54000)
+
+# We are calling a method inside of the outside of the class
+emp1.display_details()
+print
+emp1.display_details()
+```
+
+
+```py
+class emp:
+
+    def get_name_age_salary(self, name, age, salary):
+        self.name = name
+        self.age = age
+        self.salary = salary
+        self.display_details() # We are calling a method inside of the class
+        return None
+
+    def display_details(self):
+        print(
+            f'The name is: {self.name}\nThe age is: {self.age}\nThe salary is: {self.salary}')
+        return None
+
+
+emp1 = emp()
+emp2 = emp()
+
+emp1.get_name_age_salary('John', 34, 45000)
+emp2.get_name_age_salary('Cliton', 25, 54000)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ```py
 # class
 class Person:

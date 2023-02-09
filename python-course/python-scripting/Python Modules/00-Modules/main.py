@@ -1,13 +1,9 @@
-import variables
-import functions
+import platform
 
-
-print("My name is {} and I am {} years old".format(variables.NAME, variables.AGE))
-
-if variables.AGE > 18:
-    print(f"Hello {variables.NAME}, you can drive")
-else:
-    print(f"Hello {variables.NAME}, you can't drive")
-
-functions.test()
-functions.HELP()
+print("{}".format(platform.system()))
+print("{}".format(platform.uname()))
+print("{}".format(platform.python_version()))
+print("{}".format(platform.architecture()))
+print("{}".format(platform.version()))
+print("{}".format(platform.processor()))
+print("{}".format(platform.node()))

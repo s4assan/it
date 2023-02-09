@@ -1,0 +1,175 @@
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    parameters {
+        string (name: 'cluster', defaultValue: 'alpha-eks', description: 'This is the alpha-eks cluster name')
+        string (name: 'region', defaultValue: 'us-east-1', description: 'This is the alpha-eks cluster name')
+        booleanParam (name: 'createKubeconfig', defaultValue: 'true', description: 'Create kube config')
+        choice (name: 'env', choices: '\ndev\nqa\nstg\nprod\nprod2', description: 'environments')
+        booleanParam (name: 'addUser', defaultValue: 'false', description: 'If true, the pipeline will add user')
+
+        string (name: 'name', defaultValue: 'tia', description: 'name')
+        string (name: 'group', defaultValue: 'admin', description: 'group')
+        choice (name: 'directory', choices: 'dev\nqa\nstg\nprod', description: 'directory')
+    }
+    stages {
+        stage('checkout') {
+            steps {
+                script {
+                    sh 'cat /etc/*release'
+                }
+            }
+        }
+        stage('users parameters') {
+            steps {
+                script {
+                    if (params.addUser) {
+                        useradd ()
+                    }
+                }
+            }
+        }
+        stage('printing parameters') {
+            steps {
+                script {
+                    parameters()
+                }
+            }
+        }
+        // stage('condition-01') {
+        //     steps {
+        //         script {
+        //          deploy01()
+        //         }
+        //     }
+        // }
+        stage('condition-02') {
+            steps {
+                script {
+                 deploy02()
+                }
+            }
+        }
+        stage('function') {
+            steps {
+                script {
+                    sh """ 
+                    pwd
+                    """
+                }
+            }
+        }
+        stage('push image') {
+            steps {
+                script {
+                    sh """ 
+                    ls
+                    """
+                }
+            }
+        }
+    }
+    post {
+      success {
+        echo 'Finish with success -------------------------------------------'
+      }
+      failure {
+        echo 'Finish with failure -------------------------------------------'
+      }
+      always {
+        echo 'This will always run -------------------------------------------'
+      }      
+    }
+}
+
+
+def deploy01 () {
+    if (params.env == 'dev') {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == 'qa') {
+        sh """
+        echo 'This is a ${params.env} environment '
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == 'stg') {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == 'prod') {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }else{
+        """
+        echo 'HUMMMMMMMMMMMMMMMMMMMM ${params.env} environment =========================='
+       """
+    }
+}
+
+def deploy02 () {
+    if (params.env == 'dev' && params.cluster == 'alpha-dev' && params.region == 'us-east-dev') {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == 'dev1' || params.cluster == 'alpha-dev' || params.region == 'us-east-dev') {
+        sh """
+        echo 'This is a ${params.env} environment '
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == 'stg' && params.cluster == 'alpha-stg' && params.region == 'us-east-stg') {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }
+    if (params.env == "prod" && params.cluster == "alpha-prod" && params.region == "us-east-prod") {
+        sh """
+        echo 'This is a ${params.env} environment'
+        echo 'Deploying into ${params.env} environment =========================='
+        """
+    }else{
+        sh """
+        echo 'HUMMMMMMMMMMMMMMMMMMMM ${params.env} environment =========================='
+       """
+    }
+}
+
+def parameters () {
+    sh """
+    echo 'chartVersion is: ${params.chartVersion}'
+    echo 'nameSpace is: ${params.nameSpace}'
+    echo 'branchName is: ${params.branchName}'
+    echo 'deploySource is: ${params.deploySource}'
+    echo 'secretPath is: ${params.secretPath}'
+    echo 'The cluster name is: ${params.cluster}'
+    echo 'The cluster region is: ${params.region}'
+    echo 'The environment is: ${params.env}'
+    echo 'region is: ${params.region}'
+    echo 'group is: ${params.group}'
+    echo 'directory is: ${params.directory}'
+    """
+}
+
+def useradd () {
+    sh """ 
+    sudo groupadd ${params.group} 
+    sudo useradd ${params.name} 
+    sudo usermod -aG ${params.group} ${params.name} 
+    cd /tmp 
+    cat /etc/passwd |grep ${params.name}
+    cat /etc/group |grep ${params.group}
+    ls -l /tmp
+    """
+}

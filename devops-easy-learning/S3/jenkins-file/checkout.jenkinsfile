@@ -1,0 +1,54 @@
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    stages {
+        stage ('checkout') {
+            steps {
+                dir("${WORKSPACE}/scr") {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: "*/master"]],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [[$class: 'LocalBranch']],
+                        submoduleCfg: [],
+                        userRemoteConfigs: [[
+                        url: 'https://github.com/leonardtia1/tia-devops.git',
+                        credentialsId: 'tia-github-token'
+                        ]]
+                    ])
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+
+pipeline {
+    agent { 
+        label 'master' 
+    }
+    parameters {
+        string (name: 'branchName', defaultValue: 'pipeline-test', description: 'The branch name of the chart that you want to deploy or dry run')
+    }
+    stages {
+        stage ('checkout') {
+            steps {
+                dir("${WORKSPACE}/scr") {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: "*/${params.branchName}"]],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [[$class: 'LocalBranch']],
+                        submoduleCfg: [],
+                        userRemoteConfigs: [[
+                        url: 'https://github.com/leonardtia1/tia-devops.git',
+                        credentialsId: 'tia-github-token'
+                        ]]
+                    ])
+                }
+            }
+        }
+    }
+}

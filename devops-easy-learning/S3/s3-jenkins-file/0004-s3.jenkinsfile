@@ -1,0 +1,85 @@
+pipeline {
+    agent {
+        label 'master'
+    }
+    stages {
+        stage('test') {
+            steps {
+                script {
+                   sh """
+                    ls
+                    """
+                }
+            }
+        }
+    }
+}
+
+node ('master')  {
+    stage ('clone') {
+       sh 'ls'
+    }
+}
+
+node ('master') {
+    stage('test') {
+        script {
+            sh """
+            ls
+            """
+        }
+    }
+}
+
+
+node ('master') {
+    stage('clone') {
+        script {
+            sh """
+            ls
+            """
+        }
+    }
+    stage('clean') {
+        script {
+            sh """
+            ls
+            """
+        }
+    }
+    stage('build') {
+        script {
+            sh """
+            ls
+            """
+        }
+    }
+    stage('compile') {
+        script {
+            sh """
+            ls
+            """
+        }
+    }
+    stage('build image') {
+        script {
+            sh """
+            ls
+            """
+        }
+    }
+    stage('push') {
+        script {
+            sh """
+            ls
+            """
+        }
+    }
+    stage('deplouy') {
+        script {
+            sh """
+            ls
+            """
+        }
+    }
+}

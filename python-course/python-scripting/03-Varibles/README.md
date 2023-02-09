@@ -1,5 +1,5 @@
 
-### What is variable ?
+### What is variable?
 A variable is nothing but a reserved memory location to store values. In other words a variable in a program gives data to the computer to work on.
 
 ### How to declare and use a variable?
