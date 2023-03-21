@@ -15,7 +15,7 @@ sudo apt-get install -y \
     postgresql-client \
     mariadb-client \
     unzip \
-    tree \
+    tree 
 
 
 ## Install AWS CLI

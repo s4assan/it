@@ -29,6 +29,7 @@ resource "aws_instance" "bamboo" {
   tags = var.tags
 }
 
+
 # Resource Block
 resource "aws_eip" "bamboo_eip" {
   depends_on = [aws_instance.bamboo]
