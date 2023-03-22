@@ -25,3 +25,12 @@ variable "key_name" {
   type    = string
   default = "terraform"
 }
+
+variable "subnet_id" {
+  type = string
+}
+
+variable "vpc_id" {
+  type = string
+}
+
