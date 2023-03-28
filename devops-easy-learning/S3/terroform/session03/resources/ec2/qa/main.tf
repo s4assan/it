@@ -15,18 +15,18 @@ provider "aws" {
 }
 
 locals {
-  aws_region    = "us-west-2"
+  aws_region    = "us-east-1"
   instance_type = "t2.micro"
-  key_name      = "test"
+  key_name      = "s4ball"
 
-  vpc_id    = "vpc-19080661"
-  subnet_id = "subnet-cfd133e5"
+  vpc_id    = "vpc-0d66b7030e972c183"
+  subnet_id = "subnet-08a60a239eecb0d66"
 
   common_tags = {
     "AssetID"       = "2560"
     "AssetName"     = "Insfrastructure"
     "Teams"         = "DEL"
-    "Environment"   = "prod"
+    "Environment"   = "qa"
     "Project"       = "alpha"
     "CreateBy"      = "Terraform"
     "cloudProvider" = "aws"

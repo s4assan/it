@@ -1,5 +1,5 @@
 resource "aws_security_group" "bastion_sg" {
-  description = "Allow all inbound traffic from port 22 and 80"
+  description = "Allow all inbound traffic"
   vpc_id      = data.aws_vpc.default-vpc.id
 
   tags = merge(var.common_tags, {
