@@ -29,7 +29,7 @@ resource "null_resource" "copy_ec2_keys" {
     host        = aws_eip.bastion_eip.public_ip
     user        = "ubuntu"
     password    = ""
-    private_key = file("C:\\Users\\Tia\\Downloads\\terraform.pem")
+    private_key = file("~/terraform.pem")
   }
 
   provisioner "file" {
