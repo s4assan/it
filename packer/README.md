@@ -1,5 +1,10 @@
+## Amazon EKS Custom AMIs
+https://github.com/aws-samples/amazon-eks-custom-amis
+
+
 
 https://github.com/jenkins-infra/packer-images
+https://github.com/devopstf/packer-aws-sample
 ## links
 - https://developer.hashicorp.com/packer/plugins/builders/amazon/ebs
 - https://developer.hashicorp.com/packer/docs/templates/hcl_templates/onlyexcept

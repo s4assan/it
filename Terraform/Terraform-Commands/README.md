@@ -207,7 +207,7 @@ terraform plan -var="instancetype=t2.small"
 
 ### To deploy resources in the dev environment while using workspace.
 ```
-terraform apply -var-file=dev.tfvars
+terraform plan -var-file=dev.tfvars
 OR 
 terraform apply -var-file=dev.tfvars
 ```
