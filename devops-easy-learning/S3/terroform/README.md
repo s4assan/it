@@ -23,3 +23,8 @@ cp ~/Downloads/terraform12 /usr/local/bin/tf12
 
 https://releases.hashicorp.com/terraform/1.0.10/
 https://releases.hashicorp.com/terraform/0.12.31/
+```
+
+## ISSUES
+- We were not able to copy bastion script while calling the module (We use packer to resolve it)
+- 
