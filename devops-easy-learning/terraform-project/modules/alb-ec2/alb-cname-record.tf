@@ -4,5 +4,5 @@ resource "aws_route53_record" "cluster-alias" {
   name       = "web"
   type       = "CNAME"
   ttl        = "60"
-  records    = [module.alb.lb_dns_name]
+  records    = [module.alb.dns_name]
 }

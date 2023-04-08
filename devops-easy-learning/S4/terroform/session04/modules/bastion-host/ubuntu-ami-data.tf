@@ -1,4 +1,4 @@
-data "aws_ami" "ubuntu" {
+data "aws_ami" "ubuntu_20_04" {
   most_recent = true
 
   filter {
@@ -11,5 +11,14 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  owners = ["099720109477"]
+}
+
+output "ami_id" {
+  value = data.aws_ami.ubuntu_20_04.id
 }
