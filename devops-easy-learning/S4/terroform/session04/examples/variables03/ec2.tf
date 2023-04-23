@@ -1,5 +1,8 @@
 
 resource "aws_instance" "example" {
+  depends_on = [
+    aws_security_group.example
+  ]
   ami                    = var.ami
   instance_type          = var.instance_type
   key_name               = var.key_name
