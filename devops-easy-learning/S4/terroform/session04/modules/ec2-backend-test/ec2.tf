@@ -11,7 +11,7 @@ resource "aws_instance" "example" {
     volume_size = 10
   }
   tags = merge(var.common_tags, {
-    Name   = format("%s-%s-%s-bastion-host-local", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
+    Name   = format("%s-%s-%s-bastion-host", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
     DEL    = "Tia-is-good-at-terraform"
     Cedric = format("%s-%s-%s-this-is-cedric", var.common_tags["AssetID"], var.common_tags["Environment"], var.common_tags["Project"])
     },
