@@ -3,7 +3,7 @@
 - install a runner
 - register the runner (switch to `gitlab-runner` user) [here](https://www.fosstechnix.com/how-to-install-gitlab-runner-on-ubuntu/
 )
-- We can cofigure runner at
+- We can cofigure runner at 
     - The group level : This a share running (all subgroup and project can use it)
     - The subgroup level : This a share running (all projects under this subgroup can use it)
     - The project level : runner (only project can use it)
