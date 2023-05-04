@@ -15,6 +15,15 @@ provider "aws" {
 }
 
 
+terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state-bucket-s3"
+    key            = "ec2/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "my-terraform-state-locks-s3"
+  }
+}
+
 locals {
   aws_region    = "us-east-1"
   instance_type = "t2.micro"
